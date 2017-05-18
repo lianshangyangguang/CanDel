@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <com.gwell.view.candel.MatrixImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        />
+
+        <ImageView
+            style="@style/MaterialAnimations.Icon.Medium.Scaled"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/img"
+            android:layout_margin="10dp"
+            android:background="#ff0000"
+            />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

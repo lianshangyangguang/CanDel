@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.example.administrator.testanimationtest"
+        minSdkVersion 21
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+
+    signingConfigs {
+        release {
+            // default keystore file, PLZ config file path in local.properties
+            Properties properties = new Properties()
+            //加载本地local.properties文件
+            if(rootProject.file("local.properties").exists()) {
+                properties.load(rootProject.file("local.properties").newDataInputStream())
+            }
+//            storeFile file(properties.get("storeFile") ?: System.getenv("FLOW_CERTIFICATE_FILE"))
+            storePassword properties.get("storePassword") ?: System.getenv("FLOW_KEYSTORE_PASS")
+            keyAlias properties.get("keyAlias") ?: System.getenv("FLOW_ALIAS_NAME")
+            keyPassword properties.get("keyPassword") ?: System.getenv("FLOW_ALIAS_PASS")
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+
+}
